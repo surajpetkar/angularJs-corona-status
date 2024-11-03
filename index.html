@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>Worldwide Corona Status</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <link rel='stylesheet' type='text/css' media='screen' href='style.css'>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <script src="js/angular.min.js"></script>
+    <script src="js/jscript.js"></script>
+</head>
+
+<body ng-app="CoronaStatus" ng-controller="CoronaCtrl">
+    <div class="container">
+        <h2 class="text-center">{{title}}</h2>
+        <p>Get vaccinated as soon as it’s your turn and follow local guidance on vaccination.
+            Keep physical distance of at least 1 metre from others, even if they don’t appear to be sick. Avoid crowds
+            and close contact.
+            Wear a properly fitted mask when physical distancing is not possible and in poorly ventilated settings.
+            Clean your hands frequently with alcohol-based hand rub or soap and water.
+            Cover your mouth and nose with a bent elbow or tissue when you cough or sneeze. Dispose of used tissues
+            immediately and clean hands regularly.
+            If you develop symptoms or test positive for COVID-19, self-isolate until you recover.</p>
+        
+        <!--    Cases of India     -->
+
+        <div class="row text-center">
+            <div class="col-md-4">
+                <div class="card bg-warning text-white">
+                    <div class="card-body">
+                        <h3>Confirm Cases</h3>
+                        <h3 class="num" data-val="12345">00</h3>
+                    </div>
+                </div>
+            </div>
+            <!-- {{summary.confirmedCasesIndian}} -->
+            <div class="col-md-4">
+                <div class="card bg-success text-white">
+                    <div class="card-body">
+                        <h3>Recovered Cases</h3>
+                        <h3 class="num" data-val="23476">00</h3>
+                    </div>
+                </div>
+            </div>
+            <!-- {{summary.discharged}} -->
+            <div class="col-md-4">
+                <div class="card bg-danger text-white">
+                    <div class="card-body">
+                        <h3>Death Cases</h3>
+                        <h3 class="num" data-val="98870">00</h3>
+                    </div>
+                </div>
+            </div>
+            <!-- {{summary.deaths}} -->
+        </div>
+
+        <!--    Cases By States     -->
+
+        <label class="mt-5">Search <span ng-if="stateName">For : </span>{{stateName}}</label> 
+        <input type="text" 
+        class="form-control mt-2 mb-4" 
+        placeholder="enter state here" 
+        ng-model="stateName" />
+        <button ng-click="getStateCases()">Check State</button>
+
+        <h3 class="text-center" ng-if="statesObj">{{statesObj.loc}}</h3>
+        <div class="row text-center mt-4 mb-4" ng-if="statesObj">
+            <div class="col-md-4">
+                <div class="card bg-warning text-white">
+                    <div class="card-body">
+                        <h3>Confirm Cases</h3>
+                        <h3>{{statesObj.confirmedCasesIndian}}</h3>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card bg-success text-white">
+                    <div class="card-body">
+                        <h3>Recovered Cases</h3>
+                        <h3>{{statesObj.discharged}}</h3>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card bg-danger text-white">
+                    <div class="card-body">
+                        <h3>Death Cases</h3>
+                        <h3>{{statesObj.deaths}}</h3>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <button ng-click="changeValue()">Click Me</button>
+    </div>
+</body>
+
+</html>
